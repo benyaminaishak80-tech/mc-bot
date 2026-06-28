@@ -1,25 +1,28 @@
 const mineflayer = require('mineflayer');
 
+console.log("البوت راه يبدأ ديركا...");
+
 function createBot() {
     const bot = mineflayer.createBot({
-host: 'IHKBN31.aternos.me', // الآيبي المطور الجديد
-     port: 37933,                // البورت تاعك
-        username: 'Bot__ISHAK'
-        // تنحى سطر الـ version باش البوت يجيبها وحدو تلقائياً
+        host: 'IHKBN31.aternos.me', // الآيبي المطور الجديد تاعك
+        port: 37933,                // البورت تاع السيرفر تاعك
+        username: 'GuardBot',    // اسم البوت داخل اللعبة
+        version: '26.2'        // نسخة السيرفر تاعك
     });
 
     bot.on('spawn', () => {
-        console.log('البوت دخل للسيرفر بنجاح!');
-        
-        // Anti-AFK: البوت يقفز كل 30 ثانية باش ما يطردوش السيرفر
-        setInterval(() => {
-            bot.setControlState('jump', true);
-            setTimeout(() => bot.setControlState('jump', false), 500);
-        }, 30000);
+        console.log('البوت دخل ديركا للسيرفر وراه واجد!');
+    });
+
+    bot.on('chat', (username, message) => {
+        if (username === bot.username) return;
+        if (message === '!hello') {
+            bot.chat(`مرحباً بك يا ${username}!`);
+        }
     });
 
     bot.on('end', () => {
-        console.log('البوت خرج. جاري إعادة الاتصال بعد 30 ثانية...');
+        console.log('الاتصال انقطع، البوت غادي يعاود يدخل بعد 30 ثانية...');
         setTimeout(createBot, 30000);
     });
 
@@ -29,6 +32,8 @@ host: 'IHKBN31.aternos.me', // الآيبي المطور الجديد
 }
 
 createBot();
+
+// السيرفر الوهمي لي يحوس عليه موقع Render دايماً
 const http = require('http');
 const server = http.createServer((req, res) => {
    res.writeHead(200, { 'Content-Type': 'text/plain' });
