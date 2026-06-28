@@ -2,8 +2,8 @@ const mineflayer = require('mineflayer');
 
 function createBot() {
     const bot = mineflayer.createBot({
-        host: 'IHKBN31.aternos.me', 
-        port: 37933,                
+host: 'IHKBN31.aternos.me', // الآيبي المطور الجديد
+     port: 37933,                // البورت تاعك
         username: 'Bot__ISHAK'
         // تنحى سطر الـ version باش البوت يجيبها وحدو تلقائياً
     });
